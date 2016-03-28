@@ -29,4 +29,43 @@ class DataBase extends CI_Controller
         $datos=$this->personas_model->getPersonasPorId($id);
         $this->layout->view('usando_where',compact("datos"));
     }
+    public function usando_join()
+    {
+        $datos=$this->personas_model->getPersonasConDireccion();
+    $this->layout->view("usando_join",compact("datos"));
+    }
+    public function insertar()
+    {
+        $datos=array
+        (
+            "nombre"=>"Pedro Ñandú",
+            "correo"=>"pedro@gamil.com",
+            "telefono"=>"959595",
+            "fecha"=>date("y-m-d h:m:s")
+        );
+        $this->personas_model->insertar_persona($datos);
+        $this->layout->view("insertar");
+    }
+    public function modificar()
+    {
+        $datos=array
+        (
+            "nombre"=>"Pedro Ñandú LaLa",
+            "correo"=>"pedro@gamil.com",
+            "telefono"=>"11111111"
+        );
+        $arreglo=array
+        (
+            "calle"=>"calle del odio",
+            "direccion"=>"villa villa",
+            "ciudad"=>"temuco"
+        );
+        $this->personas_model->modificar_persona($datos,$arreglo,"5");
+        $this->layout->view("update");
+    }
+    public function eliminar()
+    {
+        $this->personas_model->eliminar("5");
+        $this->layout->view("eliminar");
+    }
 }
