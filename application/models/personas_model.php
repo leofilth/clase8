@@ -35,6 +35,7 @@ class personas_model extends CI_Model {
     }
     public function getPersonasConDireccion()
     {
+        //consulta a dos tablas
         $query=$this->db
             ->select("p.id as id_persona,p.nombre,p.correo,p.telefono,p.fecha,d.calle,d.direccion,d.ciudad")
             ->from("personas as p")
